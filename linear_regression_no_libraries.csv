@@ -1,0 +1,43 @@
+code
+# Linear Regression WITHOUT any libraries (User enters list of values)
+""
+# Step 1: User enters data
+"x = list(map(float, input(""Enter X values (space separated): "").split()))"
+"y = list(map(float, input(""Enter Y values (space separated): "").split()))"
+""
+# Check both lists have same length
+if len(x) != len(y):
+"    print(""Error: X and Y must have the same number of values."")"
+    exit()
+""
+n = len(x)
+""
+# Step 2: Mean function
+def mean(values):
+    return sum(values) / len(values)
+""
+x_mean = mean(x)
+y_mean = mean(y)
+""
+# Step 3: Calculate slope (m)
+numerator = 0
+denominator = 0
+""
+for i in range(n):
+    numerator += (x[i] - x_mean) * (y[i] - y_mean)
+    denominator += (x[i] - x_mean) ** 2
+""
+m = numerator / denominator
+""
+# Step 4: Calculate intercept (c)
+c = y_mean - (m * x_mean)
+""
+"print(""\nSlope (m):"", m)"
+"print(""Intercept (c):"", c)"
+""
+# Step 5: Prediction
+def predict(x_value):
+    return m * x_value + c
+""
+"test_x = float(input(""\nEnter X value to predict Y: ""))"
+"print(""Predicted Y ="", predict(test_x))"
